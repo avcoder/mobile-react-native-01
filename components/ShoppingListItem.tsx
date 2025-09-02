@@ -16,7 +16,7 @@ const ShoppingListItem = ({ name, isCompleted }: ShoppingListItemProps) => {
       [
         {
           text: "Yes",
-          onPress: () => console.log("clicked bye charis"),
+          onPress: () => console.log("clicked"),
           style: "destructive",
         },
         { text: "Cancel", style: "cancel" },
@@ -77,6 +77,9 @@ const styles = StyleSheet.create({
   },
   completedButton: {
     backgroundColor: theme.colorGrey,
+  },
+  button: {
+    backgroundColor: theme.colorWhite,
   },
   buttonText: {
     color: theme.colorWhite,
