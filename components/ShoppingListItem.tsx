@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     color: theme.colorGrey,
   },
   completedButton: {
-    backgroundColor: theme.colorGrey,
+    backgroundColor: theme.colorLightGrey,
   },
   button: {
     backgroundColor: theme.colorWhite,
