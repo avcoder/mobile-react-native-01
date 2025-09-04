@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, FlatList } from "react-native";
+import { StyleSheet, TextInput, Text, View, FlatList } from "react-native";
 import ShoppingListItem from "../components/ShoppingListItem";
 import { theme } from "./theme";
 import { useState } from "react";
@@ -9,15 +9,8 @@ type ShoppingListItemType = {
   isCompleted?: boolean;
 };
 
-const initialList: ShoppingListItemType[] = [
-  { id: "1", name: "apples" },
-  { id: "2", name: "bananas" },
-  { id: "3", name: "carrots" },
-];
-
 export default function App() {
-  const [shoppingList, setShoppingList] =
-    useState<ShoppingListItemType[]>(initialList);
+  const [shoppingList, setShoppingList] = useState<ShoppingListItemType[]>([]);
   const [value, setValue] = useState("");
 
   const handleSubmit = () => {
@@ -39,6 +32,11 @@ export default function App() {
       contentContainerStyle={styles.contentContainer}
       renderItem={({ item }) => <ShoppingListItem name={item.name} />}
       stickyHeaderIndices={[0]}
+      ListEmptyComponent={
+        <View style={styles.listEmptyContainer}>
+          <Text>Your list is empty 😀</Text>
+        </View>
+      }
       ListHeaderComponent={
         <TextInput
           placeholder="Enter item"
@@ -71,5 +69,10 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     backgroundColor: theme.colorWhite,
+  },
+  listEmptyContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 18,
   },
 });
