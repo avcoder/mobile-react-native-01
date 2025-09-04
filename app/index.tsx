@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View, FlatList } from "react-native";
 import ShoppingListItem from "../components/ShoppingListItem";
 import { theme } from "./theme";
 import { useState } from "react";
@@ -33,24 +33,23 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        placeholder="Enter item"
-        style={styles.textInput}
-        value={value}
-        onChangeText={setValue}
-        returnKeyType="done"
-        onSubmitEditing={handleSubmit}
-      />
-
-      {shoppingList.map((item) => (
-        <ShoppingListItem
-          name={item.name}
-          isCompleted={item.isCompleted}
-          key={item.id}
+    <FlatList
+      data={shoppingList}
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+      renderItem={({ item }) => <ShoppingListItem name={item.name} />}
+      stickyHeaderIndices={[0]}
+      ListHeaderComponent={
+        <TextInput
+          placeholder="Enter item"
+          style={styles.textInput}
+          value={value}
+          onChangeText={setValue}
+          returnKeyType="done"
+          onSubmitEditing={handleSubmit}
         />
-      ))}
-    </View>
+      }
+    />
   );
 }
 
@@ -68,5 +67,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     fontSize: 18,
     borderRadius: 50,
+    backgroundColor: theme.colorWhite,
+  },
+  contentContainer: {
+    backgroundColor: theme.colorWhite,
   },
 });
