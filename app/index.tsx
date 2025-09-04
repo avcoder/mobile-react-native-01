@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: 12,
+    paddingVertical: 12,
   },
   textInput: {
     borderColor: theme.colorLightGrey,
