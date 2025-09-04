@@ -12,7 +12,7 @@ export default function Layout() {
           title: "Counter",
           headerRight: () => {
             return (
-              <Link href="/counter/history">
+              <Link href="/counter/history" asChild>
                 <Pressable hitSlop={20}>
                   <Feather name="archive" size={32} color={theme.colorGrey} />
                 </Pressable>
