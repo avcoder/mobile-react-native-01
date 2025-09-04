@@ -1,5 +1,5 @@
 import { StyleSheet, Alert, Text, View, TouchableOpacity } from "react-native";
-import { theme } from "./ShoppingListTheme";
+import { theme } from "../app/theme";
 import { AntDesign } from "@expo/vector-icons";
 
 type ShoppingListItemProps = {
