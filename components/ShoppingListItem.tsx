@@ -47,7 +47,11 @@ const ShoppingListItem = ({ name, isCompleted }: ShoppingListItemProps) => {
         ]}
       >
         {/* <Text style={styles.buttonText}>Delete</Text> */}
-        <AntDesign name="closecircle" size={24} color="red" />
+        <AntDesign
+          name="closecircle"
+          size={24}
+          color={isCompleted ? theme.colorGrey : "red"}
+        />
       </TouchableOpacity>
     </View>
   );
