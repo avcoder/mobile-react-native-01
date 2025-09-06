@@ -5,6 +5,9 @@ import { theme } from "@/theme";
 import { StyleSheet, TextInput, Text, View, FlatList } from "react-native";
 import ShoppingListItem from "@/components/ShoppingListItem";
 
+// utils
+import { orderShoppingList } from "@/utils/utils";
+
 // tyes
 import { ShoppingListItemType } from "@/components/ShoppingListItemType.types";
 
@@ -45,7 +48,7 @@ export default function App() {
 
   return (
     <FlatList
-      data={shoppingList}
+      data={orderShoppingList(shoppingList)}
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
       renderItem={({ item }) => (

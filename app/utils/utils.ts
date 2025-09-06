@@ -21,3 +21,6 @@ export function orderShoppingList(shoppingList: ShoppingListItemType[]) {
     return 0;
   });
 }
+
+// silence terminal warnings regarding missing required default export
+export default {};

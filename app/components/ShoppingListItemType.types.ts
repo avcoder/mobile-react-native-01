@@ -5,3 +5,6 @@ export type ShoppingListItemType = {
   completedAt?: number;
   lastUpdated: number;
 };
+
+// silence terminal warnings regarding missing required default export
+export default {};

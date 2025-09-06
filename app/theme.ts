@@ -6,3 +6,6 @@ export const theme = {
   colorLightGrey: "#eeeeee",
   colorRed: "#ee6055",
 };
+
+// silence terminal warnings regarding missing required default export
+export default {};
