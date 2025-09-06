@@ -1,12 +1,18 @@
+import { theme } from "../app/theme";
+
+// components
 import {
   StyleSheet,
   Alert,
   Text,
   Pressable,
   TouchableOpacity,
+  View,
 } from "react-native";
-import { theme } from "../app/theme";
+
+// icons
 import { AntDesign } from "@expo/vector-icons";
+import Feather from "@expo/vector-icons/Feather";
 
 type ShoppingListItemProps = {
   // shopping list item
@@ -45,14 +51,22 @@ const ShoppingListItem = ({
       ]}
       onPress={onToggleComplete}
     >
-      <Text
-        style={[
-          styles.itemText,
-          isCompleted ? styles.completedText : undefined,
-        ]}
-      >
-        {name}
-      </Text>
+      <View style={styles.row}>
+        <Feather
+          name={isCompleted ? "check-circle" : "circle"}
+          size={24}
+          color={isCompleted ? theme.colorGrey : "black"}
+        />
+        <Text
+          style={[
+            styles.itemText,
+            isCompleted ? styles.completedText : undefined,
+          ]}
+          numberOfLines={1}
+        >
+          {name}
+        </Text>
+      </View>
       <TouchableOpacity
         onPress={handleDelete}
         activeOpacity={0.5}
@@ -88,10 +102,10 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colorLightGrey,
     borderBottomColor: theme.colorLightGrey,
   },
-  itemText: { fontSize: 18, fontWeight: "200" },
+  itemText: { fontSize: 18, fontWeight: "200", flex: 1 },
   completedText: {
     textDecorationLine: "line-through",
-    textDecorationColor: theme.colorBlack,
+    textDecorationColor: theme.colorGrey,
     color: theme.colorGrey,
   },
   completedButton: {
@@ -105,5 +119,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textTransform: "uppercase",
     letterSpacing: 1,
+  },
+  row: {
+    flexDirection: "row",
+    gap: 16,
+    flex: 1,
   },
 });
