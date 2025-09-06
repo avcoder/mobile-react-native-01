@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import { Link, Stack } from "expo-router";
 import { Pressable } from "react-native";
-import { theme } from "../theme";
+import { theme } from "@/theme";
 
 export default function Layout() {
   return (

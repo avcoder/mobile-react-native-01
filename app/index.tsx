@@ -1,15 +1,12 @@
-import { StyleSheet, TextInput, Text, View, FlatList } from "react-native";
-import ShoppingListItem from "../components/ShoppingListItem";
-import { theme } from "./theme";
 import { useState } from "react";
+import { theme } from "@/theme";
 
-type ShoppingListItemType = {
-  id: string;
-  name: string;
-  isCompleted?: boolean;
-  completedAt?: number;
-  lastUpdated: number;
-};
+// components
+import { StyleSheet, TextInput, Text, View, FlatList } from "react-native";
+import ShoppingListItem from "@/components/ShoppingListItem";
+
+// tyes
+import { ShoppingListItemType } from "@/components/ShoppingListItemType.types";
 
 export default function App() {
   const [shoppingList, setShoppingList] = useState<ShoppingListItemType[]>([]);
