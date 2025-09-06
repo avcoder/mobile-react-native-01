@@ -8,6 +8,7 @@ type ShoppingListItemType = {
   name: string;
   isCompleted?: boolean;
   completedAt?: number;
+  lastUpdated: number;
 };
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
   const handleSubmit = () => {
     if (value) {
       const newShoppingList = [
-        { id: new Date().toISOString(), name: value },
+        { id: new Date().toISOString(), name: value, lastUpdated: Date.now() },
         ...shoppingList,
       ];
 
@@ -37,6 +38,7 @@ export default function App() {
         return {
           ...item,
           completedAt: item.completedAt ? undefined : Date.now(),
+          lastUpdated: Date.now(),
         };
       }
       return item;
