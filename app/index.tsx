@@ -7,6 +7,7 @@ type ShoppingListItemType = {
   id: string;
   name: string;
   isCompleted?: boolean;
+  completedAt?: number;
 };
 
 export default function App() {
@@ -25,12 +26,37 @@ export default function App() {
     }
   };
 
+  const handleDelete = (id: string) => {
+    const newShoppingList = shoppingList.filter((item) => item.id !== id);
+    setShoppingList(newShoppingList);
+  };
+
+  const handleToggleComplete = (id: string) => {
+    const newShoppingList = shoppingList.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          completedAt: item.completedAt ? undefined : Date.now(),
+        };
+      }
+      return item;
+    });
+    setShoppingList(newShoppingList);
+  };
+
   return (
     <FlatList
       data={shoppingList}
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
-      renderItem={({ item }) => <ShoppingListItem name={item.name} />}
+      renderItem={({ item }) => (
+        <ShoppingListItem
+          name={item.name}
+          onDelete={() => handleDelete(item.id)}
+          onToggleComplete={() => handleToggleComplete(item.id)}
+          isCompleted={!!item.completedAt}
+        />
+      )}
       stickyHeaderIndices={[0]}
       ListEmptyComponent={
         <View style={styles.listEmptyContainer}>
