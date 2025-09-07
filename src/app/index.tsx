@@ -6,6 +6,7 @@ import { LayoutAnimation } from "react-native";
 import { orderShoppingList } from "@/utils/utils";
 import { getFromStorage, saveToStorage } from "@/utils/storage";
 import { STORAGE_KEY } from "@/constants";
+import * as Haptics from "expo-haptics";
 
 // components
 import { StyleSheet, TextInput, Text, View, FlatList } from "react-native";
@@ -45,6 +46,8 @@ export default function App() {
 
   const handleDelete = (id: string) => {
     const newShoppingList = shoppingList.filter((item) => item.id !== id);
+
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setShoppingList(newShoppingList);
     saveToStorage(STORAGE_KEY, newShoppingList);
@@ -53,12 +56,18 @@ export default function App() {
   const handleToggleComplete = (id: string) => {
     const newShoppingList = shoppingList.map((item) => {
       if (item.id === id) {
+        if (item.completedAt) {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        } else {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        }
         return {
           ...item,
           completedAt: item.completedAt ? undefined : Date.now(),
           lastUpdated: Date.now(),
         };
       }
+
       return item;
     });
 
